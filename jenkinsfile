@@ -21,6 +21,9 @@ pipeline {
       steps {
          sh 'npm test'
       }
-    }      
+    }    
+    stage('build-image'){
+    app = docker.build("narendra311777/nodeapp")
+    }
   }
 }
