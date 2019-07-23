@@ -24,7 +24,7 @@ pipeline {
     }    
     stage('build-image'){
     steps{
-    app = docker.build("narendra311777/nodeapp")
+    nodeapp1 = docker.build("narendra311777/nodeapp1")
     }
     }
   }
