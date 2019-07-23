@@ -23,7 +23,9 @@ pipeline {
       }
     }    
     stage('build-image'){
+    steps{
     app = docker.build("narendra311777/nodeapp")
+    }
     }
   }
 }
