@@ -1,17 +1,42 @@
-node() {
-    docker.withRegistry('narendra311777/nodeapp', 'docker') {
+pipeline {
+  agent any
     
-        git url: "https://github.com/couchbaselabs/restful-angularjs-nodejs", credentialsId: '<<your-git-credentials-id>>'
+  tools {nodejs "node"}
     
-        sh "git rev-parse HEAD > .git/commit-id"
-        def commit_id = readFile('.git/commit-id').trim()
-        println commit_id
-    
-        stage "build"
-        def app = docker.build "narendra311777/nodeapp"
-    
-        stage "publish"
-        app.push 'master'
-        app.push "${commit_id}"
+  stages {
+        
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/couchbaselabs/restful-angularjs-nodejs'
+      }
     }
+        
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+    stage( 'npm-start' ) {
+       steps { 
+          sh 'npm start'
+      }
+    }
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }    
+   stage( 'npm-stop' ) {
+       steps { 
+          sh 'npm stop'
+      }
+    }
+    stage('build-image') {
+       steps {
+       sh 'docker.build("narendra311777/restful-angularjs-nodejs")'
+     }
+     }
+    
 }
+ }
+
