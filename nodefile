@@ -33,9 +33,21 @@ pipeline {
     }
     stage('build-image') {
        steps {
-       sh 'docker.build("narendra311777/restful-angularjs-nodejs")'
+       sh 'docker.build(narendra311777/restful-angularjs-nodejs)'
      }
      }
+     stage('build-image'){
+   sh 'docker.build("narendra311777/restful-angularjs-nodejs")
+     }
+     stage('publish-image'){
+     steps {
+    
+     sh 'docker.withRegistry('https://registry.hub.docker.com','docker')'{
+     sh 'app.push("${env.BUILD_NUMBER}")'
+     sh 'app.push("latest")'
+}
+}
+}
     
 }
  }
