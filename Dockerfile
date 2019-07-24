@@ -9,12 +9,12 @@
 #CMD "node", "app.js" 
 FROM node:9-alpine
 WORKDIR /home/node/app
- Install deps
+ #Install deps
 COPY ./package* ./
 RUN npm install && \
     npm cache clean --force
 COPY . .
- Expose ports (for orchestrators and dynamic reverse proxies)
+ #Expose ports (for orchestrators and dynamic reverse proxies)
 EXPOSE 3000
- Start the app
+ #Start the app
 CMD npm start
