@@ -37,7 +37,7 @@ pipeline {
      }
      }
      stage('build-image'){
-   sh 'docker.build("narendra311777/restful-angularjs-nodejs")
+   sh 'docker.build("narendra311777/restful-angularjs-nodejs")'
      }
      stage('publish-image'){
      steps {
