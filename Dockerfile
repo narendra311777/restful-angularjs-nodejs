@@ -1,9 +1,6 @@
-FROM node:6-alpine
-
-COPY ./ ./
-
-RUN npm install
-RUN npm start
-RUN npm test
-
-CMD node app.js
+FROM alpine
+MAINTAINER "ram"
+ADD ./ ./
+EXPOSE 80
+ENV 80
+CMD [ "node", "app.js" ]
