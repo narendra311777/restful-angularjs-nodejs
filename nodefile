@@ -38,7 +38,7 @@ pipeline {
     }
      stage('publish-image'){
      steps {
-       sh 'docker.withRegistry('https://registry.hub.docker.com','docker')'{
+       sh 'docker.withRegistry("''https://registry.hub.docker.com",'docker')' {
        sh 'app.push("${env.BUILD_NUMBER}")'
        sh 'app.push("latest")'
         }
