@@ -36,13 +36,6 @@ pipeline {
        sh docker.build("narendra311777/restful-angularjs-nodejs")
      }
      }
-    stage('docker-push') {
-       steps {
-       withDockerRegistry([ credentialsId: "docker", url: "https://registry.docker.hub.docker.com" ]) {
-      // following commands will be executed within logged docker registry
-      sh 'docker push narendra311777/restful-angularjs-nodejs'
-   }
-}
-}
+    
 }
  }
