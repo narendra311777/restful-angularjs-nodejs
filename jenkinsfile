@@ -33,16 +33,16 @@ pipeline {
     }
     stage('build-image') {
        steps {
-     app = docker.build("narendra311777/restful-angularjs-nodejs")
+     app = sh docker.build("narendra311777/restful-angularjs-nodejs")
      }
      }
-   stage('publish-image') {
+    stage('docker-push') {
        steps {
-     docker.withRegistry('https://registry.hub.docker.com','docker'){
-     app.push("${env.BUILD_NUMBER}")
-     app.push("latest")
+       withDockerRegistry([ credentialsId: "docker", url: "https://registry.docker.hub.docker.com" ]) {
+      // following commands will be executed within logged docker registry
+      sh 'docker push narendra311777/restful-angularjs-nodejs'
+   }
 }
 }
 }
-}
-}
+ }
