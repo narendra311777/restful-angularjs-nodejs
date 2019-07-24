@@ -39,7 +39,7 @@ pipeline {
     stage('publish_image') {
      steps {
          withDockerRegistry([credentialsId: 'docker', url: 'https://registry.hub.docker.com']) {
-          sh "docker push narendra311777/restful-angularjs-nodejs:${BUILD_NUMBER}"
+          sh "docker push docker.io/narendra311777/restful-angularjs-nodejs:${BUILD_NUMBER}"
         }
       }
     } 
