@@ -16,16 +16,16 @@ pipeline {
         sh 'npm install'
       }
     }
-     
+    stage( 'npm-start' ) {
+       steps { 
+          sh 'npm start'
+      }
+    }
     stage('Test') {
       steps {
          sh 'npm test'
       }
     }    
-    stage('build-image'){
-    steps{
-    nodeapp1 = docker.build("narendra311777/nodeapp1")
-    }
-    }
+   
   }
 }
