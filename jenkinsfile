@@ -31,14 +31,18 @@ pipeline {
           sh 'npm stop'
       }
     }
-    stage('build-image'){
+    stage('build-image') {
+       steps {
      app = docker.build("narendra311777/restful-angularjs-nodejs")
      }
-   stage('publish-image'){
+     }
+   stage('publish-image') {
+       steps {
      docker.withRegistry('https://registry.hub.docker.com','docker'){
      app.push("${env.BUILD_NUMBER}")
      app.push("latest")
 }
 }
-  }
+}
+}
 }
