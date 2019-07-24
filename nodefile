@@ -33,7 +33,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh "docker build -t narendra311777/restful-angularjs-nodejs:${GIT_SHA} ."
+          sh "docker build -t narendra311777/restful-angularjs-nodejs:${BUILD_NUMBER} ."
       }
     }
   }
