@@ -1,4 +1,4 @@
-node("docker") {
+node() {
     docker.withRegistry('narendra311777/nodeapp', 'docker') {
     
         git url: "https://github.com/couchbaselabs/restful-angularjs-nodejs", credentialsId: '<<your-git-credentials-id>>'
