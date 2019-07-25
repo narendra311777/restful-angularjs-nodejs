@@ -17,4 +17,5 @@ RUN npm install && \
  #Expose ports (for orchestrators and dynamic reverse proxies)
 EXPOSE 3000
  #Start the app
-CMD npm start
+CMD [ "npm", "run", "start" ]
+
