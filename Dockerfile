@@ -8,12 +8,13 @@
 #ENV 80
 #CMD "node", "app.js" 
 FROM node:9-alpine
-WORKDIR /home/node/app
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app/
  #Install deps
 COPY ./package* ./
 RUN npm install && \
     npm cache clean --force
-COPY . .
+COPY . ./
  #Expose ports (for orchestrators and dynamic reverse proxies)
 EXPOSE 3000
  #Start the app
